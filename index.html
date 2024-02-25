@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exam Management System</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-qzQSmKmF+X8E1aLrK8CSO/juX4+2Yap9N6Kbf6fKMycMOYq35VvIc8V4Mzti4a8KFXPFZbXrRLocffxQK1Pk92A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <script>
+    // Add a JavaScript function to redirect to the appropriate Create Exam page
+    function redirectToCreateExam(examType) {
+      var createExamURL = '';
+      switch (examType) {
+        case 'objective':
+          createExamURL = 'create_exam.html'; // Update the URL for the objective exam
+          break;
+        case 'subjective':
+          createExamURL = 'create_exam.html'; // Update the URL for the subjective exam
+          break;
+        case 'practical':
+          createExamURL = 'create_exam.html'; // Update the URL for the practical exam
+          break;
+        default:
+          // Handle default case or show an error message
+          break;
+      }
+  
+      // Redirect to the Create Exam page
+      window.location.href = createExamURL;
+    }
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    #container {
+      display: flex;
+      width: 100%;
+    }
+
+    #sidebar {
+      height: 200vh;
+      width: auto;
+      min-width: max-content;
+      background-color: rgb(38, 38, 73);
+      color: white;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+
+    #content {
+      flex: 1;
+      padding: 20px;
+      background-color: #fff;
+      color: rgb(38, 38, 73);
+      border-radius: 10px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    input {
+      width: calc(100% - 16px);
+      padding: 12px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border-radius: 25px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    .flex-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .flex-container div {
+      flex: 1;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: navy;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #001f3f;
+    }
+
+    #sidebar a {
+      display: block;
+      color: white;
+      font-size: 17px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      padding: 35px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    #sidebar a:hover {
+      background-color: #001f3f;
+    }
+
+    #content h2 {
+      color: navy;
+    }
+
+    .small-image {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    #content label[for="negativemarking"],
+    #content label[for="enableCalculator"],
+    #content label[for="proctoring"] 
+    {
+      margin-top: 20px;
+      font-weight: 500;
+    }
+    
+    #content .custom-checkbox {
+      margin-top: 5px;
+      margin-right: 2px;
+    }
+
+    /* Add a new style to hide components by default */
+    .component {
+      display: none;
+    }
+    #sidebar .create-exam-options {
+      display: none;
+    }
+
+    #sidebar .create-exam:hover .create-exam-options {
+      display: block;
+    }
+
+    #sidebar .create-exam-options a {
+      display: block;
+      color: white;
+      font-size: 17px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      padding: 10px 35px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    #sidebar .create-exam-options a:hover {
+      background-color: #001f3f;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="sidebar">
+      <!-- Display the options directly below the "Create Exam" link -->
+      <div class="create-exam">
+        <span class="plus-icon">+</span> Create Exam
+        <div class="create-exam-options">
+          <!-- Add onclick attribute to each option to redirect to the respective page -->
+          <a onclick="redirectToCreateExam('objective')">Objective</a>
+          <a onclick="redirectToCreateExam('subjective')">Subjective</a>
+          <a onclick="redirectToCreateExam('practical')">Practical</a>
+        </div>
+      </div>
+      <a href="#GenerateQuestions" onclick="openTab('GenerateQuestions')">
+        <img src="G:\Notes\1.jpg" alt="Small Image" class="small-image" />
+        <i class="fas fa-magic"></i> Generate Questions
+      </a>
+      <a href="#ViewQuestions" onclick="openTab('ViewQuestions')">
+        <img src="G:\Notes\bg2.png" alt="View Icon" class="small-image" />
+        View Questions
+      </a>
+      
+      <!-- Add more links for other components as needed -->
+      <a href="#UpdateQuestions" onclick="openTab('UpdateQuestions')">
+        Update Questions
+      </a>
+      <a href="#DeleteQuestions" onclick="openTab('DeleteQuestions')">
+        Delete Questions
+      </a>
+      <a href="#ExamHistory" onclick="openTab('ExamHistory')">
+        Exam History
+      </a>
+      <a href="#LiveMonitoring" onclick="openTab('LiveMonitoring')">
+        Live Monitoring
+      </a>
+      <a href="#StudentMonitoring" onclick="openTab('StudentMonitoring')">
+        Student Monitoring
+      </a>
+      <a href="#InsertMarks" onclick="openTab('InsertMarks')">
+        Insert Marks
+      </a>
+      <a href="#PublishResults" onclick="openTab('PublishResults')">
+        Publish Results
+      </a>
+      <a href="#Results" onclick="openTab('Results')"> Results </a>
+    </div>
+
+    <div id="content">
+      <h1>Create Exam</h1>
+
+      <label id="subject">Subject: <input type="text" placeholder="Enter subject" /></label>
+      <label id="topic">Topic: <input type="text" placeholder="Enter topic" /></label>
+
+      <div class="flex-container">
+        <div>
+          <label id="startDate">Start Date: <input type="date" /></label>
+        </div>
+        <div>
+          <label id="startTime">Start Time: <input type="time"/> </label>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <div>
+          <label id="endDate">End Date: <input type="date" /></label>
+        </div>
+        <div>
+          <label id="endTime">End Time: <input type="time" /></label>
+        </div>
+      </div>
+
+      <label id="examPassword">Exam Password: <input type="password" placeholder="Enter password" /></label>
+
+      <label id="csvUpload">
+        CSV Upload: <input type="file" />
+        <button>Download Template</button>
+      </label>
+
+      <label id="duration">Duration (in mins): <input type="text" placeholder="Enter duration" /></label>
+
+      <label for="negativemarking">Enable negative marking in %:</label>
+      <input type="text" id="negativemarking" placeholder="Enter Negative Marks">
+
+      <label for="enableCalculator">Enable Calculator:
+        <input type="radio" value="Enable Calculator" name="Enable Calculator" id="enableCalculator">
+      </label>
+        
+      <label for="proctoring" class="radio-label">Proctoring Type:</label>
+      <div class="radio-group">
+        <input type="radio" id="automaticMonitoring" name="proctoringType" class="custom-checkbox">
+        <label for="automaticMonitoring" class="checkbox-label">Automatic Monitoring</label>
+
+        <input type="radio" id="liveMonitoring" name="proctoringType" class="custom-checkbox">
+        <label for="liveMonitoring" class="checkbox-label">Live Monitoring</label>
+      </div>
+
+      <!-- Add an onclick attribute to the "Create Exam" button -->
+      <button onclick="redirectToCreateExam()">Create Exam</button>
+    </div>
+
+    <div id="CreateExam" class="component">
+      <h2>Create Exam Component</h2>
+      <!-- Add content for the Create Exam component here -->
+    </div>
+
+    <!-- Your existing components remain unchanged -->
+
+    <script>
+      // Add a JavaScript function to show the "Create Exam" component
+      function showCreateExam() {
+        // Hide all other components
+        hideAllComponents();
+
+        // Show the "Create Exam" component
+        document.getElementById("CreateExam").style.display = "block";
+      }
+
+      // Add a JavaScript function to hide all components
+      function hideAllComponents() {
+        var components = document.querySelectorAll('.component');
+        components.forEach(function(component) {
+          component.style.display = 'none';
+        });
+      }
+    </script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
